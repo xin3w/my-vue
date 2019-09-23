@@ -84,13 +84,18 @@
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  mounted () {
+    $('.hello h2').css('color', '#f00')
+  },
+  methods: {}
 }
 </script>
 
