@@ -80,12 +80,14 @@
         </a>
       </li>
     </ul>
-    <div class="test">test</div>
+    <div class="test" v-on:click="fly">test</div>
   </div>
 </template>
 
 <script>
 import $ from 'jquery'
+import 'animate.css'
+
 export default {
   name: 'HelloWorld',
   data () {
@@ -96,6 +98,10 @@ export default {
   mounted () {
     $('.hello h2').css('color', '#f00')
   },
-  methods: {}
+  methods: {
+    fly () {
+      $('.test').addClass('animated bounceOutLeft')
+    }
+  }
 }
 </script>
