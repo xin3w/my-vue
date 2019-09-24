@@ -11,7 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const env = require('../config/prod.env')
+const env = require('../config/preview.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -66,8 +66,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       inject: true,
       env: {
         development: false,
-        preview: false,
-        production: true,
+        preview: true,
+        production: false,
       },
       minify: {
         removeComments: true,

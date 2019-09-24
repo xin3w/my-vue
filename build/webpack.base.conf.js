@@ -9,6 +9,13 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
+let publicPath
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'preview') {
+  publicPath = config.dev.assetsPublicPath
+} else {
+  publicPath = config.build.assetsPublicPath
+}
+
 const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
@@ -20,6 +27,8 @@ const createLintingRule = () => ({
   }
 })
 
+
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -28,9 +37,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
