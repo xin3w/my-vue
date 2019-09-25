@@ -1,5 +1,7 @@
 <template>
   <div class="hello">
+    <h1>{{$t('common.msg1')}}</h1>
+    <button @click="switchLanguage">切换语言</button>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -92,7 +94,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      local: 'zhCN'
     }
   },
   mounted () {
@@ -108,6 +111,10 @@ export default {
   methods: {
     fly () {
       $('.test').addClass('animated bounceOutLeft')
+    },
+    switchLanguage () {
+      this.local = (this.local === 'zhCN') ? 'enUS' : 'zhCN'
+      this.$i18n.locale = this.local
     }
   }
 }
