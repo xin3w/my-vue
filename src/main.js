@@ -3,15 +3,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import env from '@/configs/env'
+import CONFIG from '@/configs/env'
+import axios from 'axios'
+import '@/services/headers'
+import API from '@/services/api'
 
+console.log(CONFIG)
 Vue.config.productionTip = false
-console.log(env)
+Vue.prototype.API = API
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  axios,
   components: { App },
   template: '<App/>'
 })

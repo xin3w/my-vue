@@ -96,7 +96,14 @@ export default {
     }
   },
   mounted () {
+    console.log(this)
     $('.hello h2').css('color', '#f00')
+    this.API.get_block_stats('btc').then((res) => {
+      console.dir(res)
+    })
+    this.API.get_block_stats('bch').then((res) => {
+      console.dir(res)
+    })
   },
   methods: {
     fly () {

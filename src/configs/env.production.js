@@ -1,3 +1,3 @@
 module.exports = {
-  API_ENDPOINT: 'https://production.test.com'
+  API_HOST: 'https://api-prod.poolin.com/api/public/v2'
 }
