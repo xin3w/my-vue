@@ -5,7 +5,7 @@
   "author": "zhanghui <xin3w@126.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --disableHostCheck=true --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build:preview": "cross-env NODE_ENV=preview node build/build.preview.js",
@@ -14,7 +14,9 @@
   "dependencies": {
     "animate.css": "^3.7.2",
     "axios": "^0.19.0",
+    "good-storage": "^1.1.0",
     "jquery": "^3.4.1",
+    "js-cookie": "^2.2.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "vue": "^2.5.2",
