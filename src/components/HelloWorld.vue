@@ -2,86 +2,11 @@
   <div class="hello">
     <h1>{{$t('common.msg1')}}</h1>
     <button @click="switchLanguage">切换语言</button>
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <button @click="clearStorage">清理缓存并刷新页</button>
+    <div v-if="userInfo">{{userInfo}}<img :src="userInfo.avatar" alt=""></div>
+    <button @click="getUserInfo">获取用户信息</button>
+    {{wechatInfo}}
+    <button @click="getWechatInfo">获取jssdk</button>
     <div class="test" v-on:click="fly">test</div>
   </div>
 </template>
@@ -89,24 +14,23 @@
 <script>
 import $ from 'jquery'
 import 'animate.css'
-
+import storage from 'good-storage'
+import {getUserInfo, getWechatInfo} from '../services/wxauth/index'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      local: 'zhCN'
+      local: 'zhCN',
+      userInfo: null,
+      wechatInfo: null
+
     }
   },
   mounted () {
-    console.log(this)
+    // console.log(this)
     $('.hello h2').css('color', '#f00')
-    this.API.get_block_stats('btc').then((res) => {
-      console.dir(res)
-    })
-    this.API.get_block_stats('bch').then((res) => {
-      console.dir(res)
-    })
+    // this.API.wxauth.post_openid({type: 1, url: window.location.href}).then((res) => { console.log(res) })
   },
   methods: {
     fly () {
@@ -115,6 +39,28 @@ export default {
     switchLanguage () {
       this.local = (this.local === 'zhCN') ? 'enUS' : 'zhCN'
       this.$i18n.locale = this.local
+    },
+    testApi () {
+      this.API.get_block_stats('btc').then((res) => {
+        console.dir(res)
+      })
+      this.API.get_block_stats('bch').then((res) => {
+        console.dir(res)
+      })
+    },
+    clearStorage () {
+      storage.remove('accessToken')
+      this.$router.go(0)
+    },
+    getUserInfo () {
+      getUserInfo().then(res => {
+        this.userInfo = res
+      })
+    },
+    getWechatInfo () {
+      getWechatInfo().then(res => {
+        this.wechatInfo = res
+      })
     }
   }
 }

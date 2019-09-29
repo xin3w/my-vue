@@ -1,3 +1,4 @@
 module.exports = {
-  API_HOST: 'https://api-prod.poolin.com/api/public/v2'
+  // API_HOST: 'https://wanda-message-tapi.bdideal.com'
+  API_HOST: 'http://hui.canskj.cn'
 }

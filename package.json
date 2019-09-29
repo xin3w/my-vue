@@ -21,7 +21,8 @@
     "less-loader": "^5.0.0",
     "vue": "^2.5.2",
     "vue-i18n": "^8.14.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
