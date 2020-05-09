@@ -10,12 +10,18 @@ export default new Router({
     {
       path: '/',
       name: 'List',
-      component: List
+      component: List,
+      meta: {
+        title: '列表页'
+      }
     },
     {
       path: '/movie/:id',
       name: 'Detail',
-      component: Detail
+      component: Detail,
+      meta: {
+        title: '详情页'
+      }
     }
   ]
 })
